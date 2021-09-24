@@ -1,0 +1,22 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    kubernetes.io/ingress.class: haproxy
+  creationTimestamp: null
+  name: devops-toolkit
+  namespace: devops-toolkit
+spec:
+  rules:
+  - host: devops-toolkit.local
+    http:
+      paths:
+      - backend:
+          service:
+            name: devops-toolkit
+            port:
+              number: 80
+        path: /
+        pathType: Prefix
+status:
+  loadBalancer: {}
